@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood-XMD Deploy</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, black, red);
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+
+    h1 {
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: block;
+      width: 250px;
+      margin: 10px auto;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(90deg, #ff0000, #990000);
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px red;
+    }
+
+    .counter {
+      margin-top: 25px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ff4d4d;
+      text-shadow: 0 0 10px red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Blood-XMD Deploy</h1>
+    
+    <!-- Buttons -->
+    <button class="btn" onclick="window.open('https://example.com/main-bot','_blank')">
+      Deploy blood-xmd main bot
+    </button>
+    <button class="btn" onclick="window.open('https://example.com/mini-bot','_blank')">
+      Deploy blood-xmd mini bot
+    </button>
+    
+    <!-- Active Bot Counter -->
+    <div class="counter">
+      Active Bots: <span id="botCount">0</span>
+    </div>
+  </div>
+
+  <!-- Script for Real-Time Counter -->
+  <script>
+    async function fetchBotCount() {
+      try {
+        const response = await fetch("/api/bot-count");
+        const data = await response.json();
+        document.getElementById("botCount").textContent = data.count;
+      } catch (error) {
+        console.error("Error fetching bot count:", error);
+      }
+    }
+
+    fetchBotCount();
+    setInterval(fetchBotCount, 10000); // Refresh every 10 seconds
+  </script>
+</body>
+</html>
