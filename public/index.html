@@ -5,73 +5,156 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blood-XMD Deploy</title>
   <style>
-    body {
+    /* Reset */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, black, red);
-      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #000000, #1a0000, #330000, #660000);
+      font-family: "Poppins", sans-serif;
+      background-size: 300% 300%;
+      animation: gradientBG 10s ease infinite;
+      flex-direction: column;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .container {
       background: rgba(0, 0, 0, 0.6);
-      padding: 40px;
-      border-radius: 15px;
+      padding: 50px;
+      border-radius: 20px;
       text-align: center;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+      border: 2px solid rgba(255, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      width: 350px;
+      position: relative;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px auto;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 0 20px red;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     h1 {
-      color: #fff;
-      margin-bottom: 20px;
+      color: #ff1a1a;
+      margin-bottom: 25px;
+      font-size: 26px;
+      text-shadow: 0 0 15px #ff0000;
+      letter-spacing: 1px;
     }
 
     .btn {
       display: block;
-      width: 250px;
-      margin: 10px auto;
-      padding: 12px;
+      width: 100%;
+      margin: 12px 0;
+      padding: 14px;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
       color: white;
       background: linear-gradient(90deg, #ff0000, #990000);
-      transition: 0.3s;
+      transition: all 0.3s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.2);
+      transform: skewX(-45deg);
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
     }
 
     .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px red;
+      transform: scale(1.07);
+      box-shadow: 0 0 20px #ff0000, 0 0 40px #b30000;
     }
 
     .counter {
-      margin-top: 25px;
-      font-size: 20px;
+      margin-top: 30px;
+      font-size: 22px;
       font-weight: bold;
       color: #ff4d4d;
+      text-shadow: 0 0 12px red, 0 0 20px #ff1a1a;
+    }
+
+    .counter span {
+      font-size: 26px;
+      color: #ffffff;
+      text-shadow: 0 0 20px #ff3333, 0 0 40px #ff0000;
+    }
+
+    footer {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #ffb3b3;
+      text-align: center;
+    }
+
+    footer strong {
+      color: #fff;
       text-shadow: 0 0 10px red;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>FREE Deploy Site</h1>
+    <!-- Logo -->
+    <div class="logo">
+      <img src="https://files.catbox.moe/jb4ee8.jpg" alt="Blood-XMD Logo">
+    </div>
+
+    <h1>🚀 FREE Deploy Zone</h1>
     
     <!-- Buttons -->
     <button class="btn" onclick="window.open('https://example.com/main-bot','_blank')">
-      Deploy blood-xmd main bot V 3
+      🔥 Deploy Blood-XMD Main Bot V3
     </button>
-    <button class="btn" onclick="window.open('https://blood-v2-88bfd1dc32b2.herokuapp.com/','_blank')">
-      Deploy blood-xmd MINI bot V 2
+    <button class="btn" onclick="window.open('https://version-2-72b7cce14370.herokuapp.com/','_blank')">
+      ⚡ Deploy Blood-XMD Mini Bot V2
     </button>
     
     <!-- Active Bot Counter -->
     <div class="counter">
       Active Bots: <span id="botCount">0</span>
     </div>
+
+    <!-- Footer -->
+    <footer>
+      <p><strong>Owner:</strong> Sachithra Madusanka<br>
+      <strong>Admin:</strong> Lakshan Damayantha</p>
+    </footer>
   </div>
 
   <!-- Script for Real-Time Counter -->
